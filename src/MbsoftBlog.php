@@ -2,7 +2,9 @@
 
 namespace Mbsoft31\MbsoftBlog;
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Mbsoft31\MbsoftBlog\Models\Post;
 
@@ -74,6 +76,12 @@ class MbsoftBlog
                 );
         }
 
+        if (Arr::has($data, 'thumbnail'))
+        {
+            $post = $this->updatePostThumbnail($post, $data['thumbnail']);
+            $dirty = true;
+        }
+
         if (Arr::has($data, 'short_description'))
         {
             $post->short_description()
@@ -84,6 +92,54 @@ class MbsoftBlog
 
         return $dirty ? $post->save() : false;
 
+    }
+
+    public function updatePostThumbnail(Post $post, UploadedFile $thumbnail = null)
+    {
+        if (! $thumbnail) return $post;
+
+        $url = $thumbnail->store('public');
+        if ($url)
+            $post->thumbnail = $url;
+
+        return $post;
+    }
+
+    /**
+     * @param Post $post
+     * @param $user
+     * @return Post
+     */
+    public function viewedBy(Post $post, $user = null): Post
+    {
+
+        if ( is_null($user) > 0 ) {
+            return $post;
+        }
+
+        if (
+            $post->user_views()
+                ->where('user_id', $user->id)
+                ->count() > 0
+        )
+        {
+            return $post;
+        }
+
+        $post->user_views()->updateOrCreate([
+            'user_id' => $user->id,
+        ]);
+
+        if (! $post->views )
+        {
+            $post->views()->create([
+                'views' => 1,
+            ]);
+        }else {
+            $post->views()->increment('views');
+        }
+
+        return $post->refresh();
     }
 
 
