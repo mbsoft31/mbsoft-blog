@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "mbsoft31/mbsoft-blog",
+    "description": "This is my package mbsoft-blog",
     "keywords": [
-        ":vendor_name",
+        "mbsoft31",
         "laravel",
-        ":package_slug"
+        "mbsoft-blog"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/mbsoft31/mbsoft-blog",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Bekhouche Mouadh",
+            "email": "bekhouche.mouadh@gmail.com",
             "role": "Developer"
         }
     ],
@@ -34,13 +34,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Mbsoft31\\MbsoftBlog\\": "src",
+            "Mbsoft31\\MbsoftBlog\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Mbsoft31\\MbsoftBlog\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -54,10 +54,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Mbsoft31\\MbsoftBlog\\MbsoftBlogServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "MbsoftBlog": "Mbsoft31\\MbsoftBlog\\Facades\\MbsoftBlog"
             }
         }
     },

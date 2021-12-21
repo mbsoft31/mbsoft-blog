@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Mbsoft31\MbsoftBlog\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class MbsoftBlogCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'mbsoft-blog';
 
     public $description = 'My command';
 
