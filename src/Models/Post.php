@@ -10,7 +10,7 @@ class Post extends Model
     use HasFactory;
     protected $guarded = [];
     protected $casts = [
-        'published' => 'boolean'
+        'published' => 'boolean',
     ];
 
     public function user()

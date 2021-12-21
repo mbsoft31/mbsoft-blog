@@ -2,11 +2,9 @@
 
 use Illuminate\Support\Str;
 use Mbsoft31\MbsoftBlog\Facades\MbsoftBlog;
-use Mbsoft31\MbsoftBlog\Models\Post;
 use Mbsoft31\MbsoftBlog\Models\User;
 
 it('can create new untitled post', function () {
-
     $user = User::factory()->count(1)->create()->last();
 
     $post = MbsoftBlog::createNewPost($user);
@@ -19,7 +17,6 @@ it('can create new untitled post', function () {
 });
 
 it('create and change slug if the slug of new post exists', function () {
-
     $user = User::factory()->count(1)->create()->last();
 
     MbsoftBlog::createNewPost($user);
@@ -34,7 +31,6 @@ it('create and change slug if the slug of new post exists', function () {
 });
 
 it('can update existing post', function () {
-
     $user = User::factory()->count(1)->create()->last();
     $post = MbsoftBlog::createNewPost($user);
     $data = [

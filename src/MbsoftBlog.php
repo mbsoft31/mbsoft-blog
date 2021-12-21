@@ -13,7 +13,7 @@ class MbsoftBlog
      * @param string $title
      * @return Post|null
      */
-    public function createNewPost($user, string $title = 'Untitled post') : ?Post
+    public function createNewPost($user, string $title = 'Untitled post'): ?Post
     {
         $slug = $this->generatePostSlug($title);
 
@@ -52,30 +52,29 @@ class MbsoftBlog
      * @param array $data
      * @return bool
      */
-    public function updatePost(Post $post, array $data = []) : bool
+    public function updatePost(Post $post, array $data = []): bool
     {
-
-        if ( ! (count($data) > 0) ) return false;
+        if (! (count($data) > 0)) {
+            return false;
+        }
 
         $dirty = false;
 
-        if (Arr::has($data, 'title'))
-        {
+        if (Arr::has($data, 'title')) {
             $post->title = $data['title'];
-            $post->slug = $this->generatePostSlug($data['title']);;
+            $post->slug = $this->generatePostSlug($data['title']);
+            ;
             $dirty = true;
         }
 
-        if (Arr::has($data, 'description'))
-        {
+        if (Arr::has($data, 'description')) {
             $post->description()
                 ->updateOrCreate(
                     Arr::only($data, ['description'])
                 );
         }
 
-        if (Arr::has($data, 'short_description'))
-        {
+        if (Arr::has($data, 'short_description')) {
             $post->short_description()
                 ->updateOrCreate(
                     Arr::only($data, ['short_description'])
@@ -83,8 +82,5 @@ class MbsoftBlog
         }
 
         return $dirty ? $post->save() : false;
-
     }
-
-
 }
